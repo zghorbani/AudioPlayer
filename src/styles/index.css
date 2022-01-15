@@ -22,13 +22,11 @@ body {
   margin: 0 auto;
   padding: 0 25px;
 }
-svg{
+svg {
   padding-top: 15px;
 }
-svg>path {
+svg > path {
   fill: white;
-  width: 15px;
-  height: 15px;
 }
 .players {
   max-width: 960px;
@@ -45,8 +43,8 @@ svg>path {
   position: relative;
   text-align: center;
 }
-.whole{
-
+.whole {
+  min-width: 340px; 
   background-color: #333333a6;
   border-radius: 10px;
 }
@@ -56,9 +54,8 @@ svg>path {
   flex-direction: row;
   justify-content: space-between;
 }
-.handels svg{
+.handels div {
   padding-left: 5px;
-  padding-right: 5px;
 }
 .duration {
   display: flex;
@@ -73,11 +70,104 @@ img {
 
 .full-control {
   padding-top: 5px;
-  margin-top: -1em;
   display: flex;
   flex-direction: row-reverse;
-  justify-content: space-around;
+  justify-content:space-between;
 }
-.toggleIcon{
+.songName {
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0 0.4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+.artistName {
+  font-size: 1rem;
+  line-height: 2;
+  letter-spacing: normal;
+  padding-right: 0.4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  padding-bottom: 5px;
+}
+.closeWindow svg{
   padding-top: 20px;
+}
+.toggle svg {
+  padding-top: 18px;
+  padding-left: 5px;
+}
+.full-control > div {
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+.full-control > div:last-of-type {
+padding-left: 40px;
+}
+@media screen and (max-width: 480px) {
+  img {
+    width: 25px;
+    height: 25px;
+  }
+  .songName {
+    font-weight: 500;
+    font-size: 0.5rem;
+
+  }
+  .artistName {
+    font-size: 0.5rem;
+
+  }
+  svg > path {
+    width:15px;
+    height: 15px;
+  }
+  .full-control > div {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 15px;
+  }
+  svg {
+    padding-top: 0;
+  }
+  .toggle svg {
+    padding-top: 7px;
+  }
+  .closeWindow svg{
+    padding-top: 8px;
+  }
+  svg {
+    width:10px;
+    height:10px;
+  }
+  .handels div {
+    padding-left: 2px;
+  }
+  .handels {
+    width: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-right: 8px;
+  }
+  .slider-container{
+    width: 70px;
+  }
+  .slider-container .duration{
+    font-size: 5px;
+  }
+  .slider-container .seek input{
+    width:70px;
+  }
+  .full-control > div:last-of-type {
+    padding-left: 40px;
+    }
+    .full-control > div:first-of-type {
+      padding-right: 0;
+      }
 }

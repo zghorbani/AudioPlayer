@@ -202,11 +202,13 @@ class FullControl extends React.Component {
               volume={this.state.volume}
               ref={(ref) => (this.player = ref)}
             />
-            <div className="image">
+            <div className="imgContainer">
               <img src={this.sources[this.state.currentSrcIndex][1]}></img>
             </div>
             <div className="name">
-              <p>{this.sources[this.state.currentSrcIndex][2]}</p>
+              <div className="songName">اسم موزیک</div>
+              <div className="artistName">{this.sources[this.state.currentSrcIndex][2]}</div>
+              
             </div>
             <div className="download">
               <a
@@ -336,7 +338,7 @@ class FullControl extends React.Component {
                   </svg>
                 </div>
               </div>
-              <div>
+              <div className="toggle">
                 <div onClick={this.handleToggle}>
                   {this.state.playing ? (
                     <svg
@@ -345,10 +347,7 @@ class FullControl extends React.Component {
                       height="20"
                       viewBox="0 0 20 20"
                     >
-                     
-                      <path
-                        d="M2 0a1.873 1.873 0 00-2 1.714v8.571A1.873 1.873 0 002 12a1.873 1.873 0 002-1.714V1.714A1.873 1.873 0 002 0zm8 0a1.873 1.873 0 00-2 1.714v8.571A1.873 1.873 0 0010 12a1.873 1.873 0 002-1.714V1.714A1.873 1.873 0 0010 0z"
-                      ></path>
+                      <path d="M2 0a1.873 1.873 0 00-2 1.714v8.571A1.873 1.873 0 002 12a1.873 1.873 0 002-1.714V1.714A1.873 1.873 0 002 0zm8 0a1.873 1.873 0 00-2 1.714v8.571A1.873 1.873 0 0010 12a1.873 1.873 0 002-1.714V1.714A1.873 1.873 0 0010 0z"></path>
                     </svg>
                   ) : (
                     <svg
@@ -357,10 +356,7 @@ class FullControl extends React.Component {
                       height="20"
                       viewBox="0 0 20 20"
                     >
-                      
-                      <path
-                        d="M1 1.135v11.73a1.152 1.152 0 001.769.956l9.364-5.865a1.122 1.122 0 000-1.911L2.769.18A1.152 1.152 0 001 1.135z"
-                      ></path>
+                      <path d="M1 1.135v11.73a1.152 1.152 0 001.769.956l9.364-5.865a1.122 1.122 0 000-1.911L2.769.18A1.152 1.152 0 001 1.135z"></path>
                     </svg>
                   )}
                 </div>
