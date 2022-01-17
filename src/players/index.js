@@ -1,2 +1,2 @@
 
-export const FullControl = require('./FullControls').default
+export const FullControl = require('./FullControl').default
