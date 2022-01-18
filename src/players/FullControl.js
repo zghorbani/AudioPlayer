@@ -87,7 +87,6 @@ const FullControl = function () {
   function handleToggle() {
     setPlaying(!playing);
     clearRAF();
-    console.log(numUrl);
     if (flag) {
       incorrecturl();
       setPlaying(false);
