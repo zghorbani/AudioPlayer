@@ -14,7 +14,7 @@ const FullControl = function () {
     ],
     [
       [
-        "https://dls.music-fa.com/tagdl/ali/Mojtaba%20Karami%20-%20Aah%20(128).mp3",
+        "https://dls.music-fa.com/tagdl/99/Mehraj%20-%20Talkh%20(128).mp3",
         "https://dls.music-fa.com/tagdl/ali/Mojtaba%20Karami%20-%20Aah%20(128)s.mp3",
       ],
       "https://tbn3-cdn.zarebin.ir/ava-cover/22/0872/1756570872?zb_src=ava-prod-rgw.kp0.mci.dev&zb_dmn=ava-prod-rgw.kp0.mci.dev&zb_scm=https",
@@ -22,7 +22,7 @@ const FullControl = function () {
     ],
     [
       [
-        "https://dls.music-fa.com/tagdl/99/Mehraj%20-%20Talkh%20(128).mp3",
+        "https://dls.music-fa.com/tagdl/ali/Mojtaba%20Karami%20-%20Aah%20(128)s.mp3",
         "https://dls.music-fa.com/tagdl/99/Mehraj%20-%20Talkh%20(128)s.mp3",
       ],
       "https://tbn3-cdn.zarebin.ir/ava-thumbnail/35/0635/1311180635?zb_src=ava-prod-rgw.kp0.mci.dev&zb_dmn=ava-prod-rgw.kp0.mci.dev&zb_scm=https",
@@ -30,15 +30,15 @@ const FullControl = function () {
     ],
     [
       [
+        "https://dls.music-fa.com/tagdl/99/Mehraj%20-%20Talkh%20(128).mp3",
         "https://dls.music-fa.com/tagdl/ali/Mojtaba%20Karami%20-%20Aah%20(128).mp3",
-        "https://dls.music-fa.com/tagdl/ali/Mojtaba%20Karami%20-%20Aah%20(128)s.mp3",
       ],
       "https://tbn3-cdn.zarebin.ir/ava-cover/22/0872/1756570872?zb_src=ava-prod-rgw.kp0.mci.dev&zb_dmn=ava-prod-rgw.kp0.mci.dev&zb_scm=https",
       "موزیک چهارم",
     ],
     [
       [
-        "https://dls.music-fa.com/tagdl/99/Mehraj%20-%20Talkh%20(128).mp3",
+        "https://dls.music-fa.com/tagdl/99/Mehraj%20-%20Talkh%20(128)s.mp3",
         "https://dls.music-fa.com/tagdl/99/Mehraj%20-%20Talkh%20(128).mp3",
       ],
       "https://tbn3-cdn.zarebin.ir/ava-thumbnail/35/0635/1311180635?zb_src=ava-prod-rgw.kp0.mci.dev&zb_dmn=ava-prod-rgw.kp0.mci.dev&zb_scm=https",
@@ -79,11 +79,15 @@ const FullControl = function () {
   const [flag, setFlag] = useState(false);
   useEffect(() => {
     clearRAF();
+    
   }, []);
+  useEffect(()=>{
+    setNumUrl(0)
+  },[currentSrcIndex])
   function handleToggle() {
-    console.log(flag);
     setPlaying(!playing);
     clearRAF();
+    console.log(numUrl);
     if (flag) {
       incorrecturl();
       setPlaying(false);
@@ -93,9 +97,11 @@ const FullControl = function () {
   function handleOnLoad() {
     setLoaded(true);
     setDuration(player.current.duration());
+    
   }
 
   function handleOnPlay() {
+    
     setPlaying(true);
     renderSeekPos();
   }
@@ -107,12 +113,12 @@ const FullControl = function () {
 
   function handleNext() {
     setFlag(false);
-    setNumUrl(0);
+    setPlaying(false)
     const nextIndex = currentSrcIndex === 6 ? 0 : Number(currentSrcIndex) + 1;
     setCurrentSrcIndex(nextIndex);
   }
   function handleBefore() {
-    setNumUrl(0);
+    // setNumUrl(0);
     setFlag(false);
     const nextIndex = currentSrcIndex === 0 ? 6 : Number(currentSrcIndex) - 1;
     setCurrentSrcIndex(nextIndex);
@@ -167,6 +173,7 @@ const FullControl = function () {
       alert("You got error");
     } else {
       setNumUrl(numUrl + 1);
+     
     }
   }
   function incorrecturl() {
