@@ -5,34 +5,60 @@ import Button from "../components/Button";
 const FullControl = function () {
   const sources = [
     [
-      "https://dls.music-fa.com/tagdl/99/Mehraj%20-%20Talkh%20(128).mp3",
+      [
+        "https://dls.music-fa.com/tagdl/ali/Mojtaba%20Karami%20-%20Aah%20(128)s.mp3",
+        "https://dls.music-fa.com/tagdl/99/Mehraj%20-%20Talkh%20(128)s.mp3",
+      ],
       "https://tbn3-cdn.zarebin.ir/ava-thumbnail/35/0635/1311180635?zb_src=ava-prod-rgw.kp0.mci.dev&zb_dmn=ava-prod-rgw.kp0.mci.dev&zb_scm=https",
       "موزیک اول",
     ],
     [
-      "https://dls.music-fa.com/tagdl/ali/Mojtaba%20Karami%20-%20Aah%20(128).mp3",
+      [
+        "https://dls.music-fa.com/tagdl/ali/Mojtaba%20Karami%20-%20Aah%20(128).mp3",
+        "https://dls.music-fa.com/tagdl/ali/Mojtaba%20Karami%20-%20Aah%20(128)s.mp3",
+      ],
       "https://tbn3-cdn.zarebin.ir/ava-cover/22/0872/1756570872?zb_src=ava-prod-rgw.kp0.mci.dev&zb_dmn=ava-prod-rgw.kp0.mci.dev&zb_scm=https",
       "موزیک دوم",
     ],
     [
-      "https://dls.music-fa.com/tagdl/99/Mehraj%20-%20Talkh%20(128).mp3",
+      [
+        "https://dls.music-fa.com/tagdl/99/Mehraj%20-%20Talkh%20(128).mp3",
+        "https://dls.music-fa.com/tagdl/99/Mehraj%20-%20Talkh%20(128)s.mp3",
+      ],
       "https://tbn3-cdn.zarebin.ir/ava-thumbnail/35/0635/1311180635?zb_src=ava-prod-rgw.kp0.mci.dev&zb_dmn=ava-prod-rgw.kp0.mci.dev&zb_scm=https",
       "موزیک سوم",
     ],
     [
-      "https://dls.music-fa.com/tagdl/ali/Mojtaba%20Karami%20-%20Aah%20(128).mp3",
+      [
+        "https://dls.music-fa.com/tagdl/ali/Mojtaba%20Karami%20-%20Aah%20(128).mp3",
+        "https://dls.music-fa.com/tagdl/ali/Mojtaba%20Karami%20-%20Aah%20(128)s.mp3",
+      ],
       "https://tbn3-cdn.zarebin.ir/ava-cover/22/0872/1756570872?zb_src=ava-prod-rgw.kp0.mci.dev&zb_dmn=ava-prod-rgw.kp0.mci.dev&zb_scm=https",
       "موزیک چهارم",
     ],
     [
-      "https://dls.music-fa.com/tagdl/99/Mehraj%20-%20Talkh%20(128).mp3",
+      [
+        "https://dls.music-fa.com/tagdl/99/Mehraj%20-%20Talkh%20(128).mp3",
+        "https://dls.music-fa.com/tagdl/99/Mehraj%20-%20Talkh%20(128).mp3",
+      ],
       "https://tbn3-cdn.zarebin.ir/ava-thumbnail/35/0635/1311180635?zb_src=ava-prod-rgw.kp0.mci.dev&zb_dmn=ava-prod-rgw.kp0.mci.dev&zb_scm=https",
       "موزیک پتجم",
     ],
     [
-      "https://dls.music-fa.com/tagdl/ali/Mojtaba%20Karami%20-%20Aah%20(128).mp3",
+      [
+        "https://dls.music-fa.com/tagdl/ali/Mojtaba%20Karami%20-%20Aah%20(128).mp3",
+        "https://dls.music-fa.com/tagdl/ali/Mojtaba%20Karami%20-%20Aah%20(128).mp3",
+      ],
       "https://tbn3-cdn.zarebin.ir/ava-cover/22/0872/1756570872?zb_src=ava-prod-rgw.kp0.mci.dev&zb_dmn=ava-prod-rgw.kp0.mci.dev&zb_scm=https",
       "موزیک ششم",
+    ],
+    [
+      [
+        "https://dls.music-fa.com/tagdl/ali/Mojtaba%20Karami%20-%20Aah%20(128).mp3",
+        "https://dls.music-fa.com/tagdl/ali/Mojtaba%20Karami%20-%20Aah%20(128).mp3",
+      ],
+      "https://tbn3-cdn.zarebin.ir/ava-cover/22/0872/1756570872?zb_src=ava-prod-rgw.kp0.mci.dev&zb_dmn=ava-prod-rgw.kp0.mci.dev&zb_scm=https",
+      "موزیک هفتم",
     ],
   ];
   const [source, setSource] = useState(sources[0]);
@@ -49,12 +75,19 @@ const FullControl = function () {
   const [duration, setDuration] = useState(0.0);
   const raf = useRef();
   const [user, setUser] = useState(true);
+  const [numUrl, setNumUrl] = useState(0);
+  const [flag, setFlag] = useState(false);
   useEffect(() => {
     clearRAF();
   }, []);
   function handleToggle() {
+    console.log(flag);
     setPlaying(!playing);
     clearRAF();
+    if (flag) {
+      incorrecturl();
+      setPlaying(false);
+    }
   }
 
   function handleOnLoad() {
@@ -73,11 +106,15 @@ const FullControl = function () {
   }
 
   function handleNext() {
-    const nextIndex = currentSrcIndex === 4 ? 0 : Number(currentSrcIndex) + 1;
+    setFlag(false);
+    setNumUrl(0);
+    const nextIndex = currentSrcIndex === 6 ? 0 : Number(currentSrcIndex) + 1;
     setCurrentSrcIndex(nextIndex);
   }
   function handleBefore() {
-    const nextIndex = currentSrcIndex === 0 ? 4 : Number(currentSrcIndex) - 1;
+    setNumUrl(0);
+    setFlag(false);
+    const nextIndex = currentSrcIndex === 0 ? 6 : Number(currentSrcIndex) - 1;
     setCurrentSrcIndex(nextIndex);
   }
 
@@ -103,9 +140,11 @@ const FullControl = function () {
   }
   function handlePlus() {
     player.current.seek(seek + 10);
+    incorrecturl();
   }
   function handleMines() {
     player.current.seek(seek - 10);
+    incorrecturl();
   }
   function renderSeekPos() {
     if (!isSeeking) {
@@ -122,13 +161,26 @@ const FullControl = function () {
   function clearRAF() {
     cancelAnimationFrame(raf.current);
   }
-
+  function change() {
+    if (numUrl > 0) {
+      setFlag(true);
+      alert("You got error");
+    } else {
+      setNumUrl(numUrl + 1);
+    }
+  }
+  function incorrecturl() {
+    if (flag) {
+      event.preventDefault();
+      alert("You got error");
+    }
+  }
   return (
     <div className="whole">
       {user && (
         <div className="full-control">
           <ReactHowler
-            src={sources[currentSrcIndex][0]}
+            src={sources[currentSrcIndex][0][numUrl]}
             playing={playing}
             onLoad={handleOnLoad}
             onPlay={handleOnPlay}
@@ -137,6 +189,9 @@ const FullControl = function () {
             mute={mute}
             volume={volume}
             ref={player}
+            onLoadError={(id, error) => {
+              change();
+            }}
           />
           <div className="imgContainer">
             <img src={sources[currentSrcIndex][1]}></img>
@@ -147,10 +202,8 @@ const FullControl = function () {
           </div>
           <div className="download">
             <a
-              href={sources[currentSrcIndex][0]}
-              target="_blank"
-              rel="noopener noreferrer"
-              download
+              href={sources[currentSrcIndex][0][numUrl]}
+              onClick={incorrecturl}
             >
               <svg
                 width="20"
@@ -211,7 +264,6 @@ const FullControl = function () {
               </span>
             </div>
           </div>
-
           <div class="handels">
             <div onClick={handleMines}>
               <svg
@@ -293,7 +345,6 @@ const FullControl = function () {
               </svg>
             </div>
           </div>
-
           <div className="toggles-mute">
             <div onClick={handleMuteToggle}>
               {mute ? (
